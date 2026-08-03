@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f1e6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Brew &amp; Bean Journal — Specialty Coffee, Home Espresso & Brewing Guides</title>
+    <meta name="description" content="An independent editorial guide to specialty coffee — pour-over, espresso, French press, bean origins and home coffee bar setups. Written for home brewers who care about the craft." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="__CANONICAL__" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Brew & Bean Journal" />
+    <meta property="og:title" content="Brew &amp; Bean Journal" />
+    <meta property="og:description" content="Specialty coffee brewing, home espresso, and coffee bean guides for home brewers." />
+    <meta property="og:url" content="__CANONICAL__" />
+    <meta property="og:image" content="/og-cover.svg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Brew &amp; Bean Journal" />
+    <meta name="twitter:description" content="Specialty coffee brewing, home espresso and bean guides." />
+    <meta name="twitter:image" content="/og-cover.svg" />
+
+    <!--
+      Google Consent Mode v2 defaults are set up front so that no cookies are read or written
+      before the user makes a choice. GA is only loaded when a valid measurement ID is present.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      var __BBJ_GA_ID = window.__BBJ_GA_ID || 'G-4J046JXWVC';
+      if (/^G-[A-Z0-9]{6,}$/.test(__BBJ_GA_ID)) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + __BBJ_GA_ID;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', __BBJ_GA_ID, { anonymize_ip: true });
+      }
+    </script>
+
+    <!-- JSON-LD (identity + website + search action) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Brew & Bean Journal",
+        "email": "brewandbeanjournal@gmail.com",
+        "url": "__CANONICAL__"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Brew & Bean Journal",
+        "url": "__CANONICAL__",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "__CANONICAL__/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-cream text-ink antialiased">
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

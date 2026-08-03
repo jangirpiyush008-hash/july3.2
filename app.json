@@ -1,0 +1,12 @@
+{
+  "name": "Brew & Bean Journal",
+  "description": "Specialty coffee, home espresso and brewing guides.",
+  "keywords": ["coffee", "espresso", "pour-over", "french-press", "brewing", "vite", "react"],
+  "env": {
+    "NODE_ENV": { "value": "production" },
+    "SITE_ORIGIN": { "description": "Full origin of the deployed site, e.g. https://main.dxxxxxxxx.amplifyapp.com" }
+  },
+  "formation": { "web": { "quantity": 1, "size": "basic" } },
+  "buildpacks": [{ "url": "heroku/nodejs" }],
+  "stack": "heroku-22"
+}

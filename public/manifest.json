@@ -1,0 +1,12 @@
+{
+  "name": "Brew & Bean Journal",
+  "short_name": "Brew & Bean",
+  "description": "Specialty coffee, home espresso and brewing guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f1e6",
+  "theme_color": "#2a1810",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
