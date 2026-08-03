@@ -3,14 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
+        - node --version
         - nvm use 20 || true
-        - npm ci
+        - node --version
+        - npm ci --no-audit --no-fund
     build:
       commands:
-        # SITE_ORIGIN comes from Amplify Console → App settings → Environment variables.
-        # Setting it makes canonical URLs, Open Graph URLs, JSON-LD identity and sitemap.xml
-        # point at your real deploy origin. If unset, those declarations are omitted.
+        # SITE_ORIGIN is set in Amplify Console → App settings → Environment variables.
+        # Example value: https://main.dxxxxxxxx.amplifyapp.com  (no trailing slash)
+        # It flows into prerender.js, which writes it into every canonical URL,
+        # og:url meta tag, JSON-LD "url" field, and sitemap.xml.
+        # If it is not set, those absolute-URL declarations are OMITTED rather
+        # than served with the wrong domain.
+        - echo "Building with SITE_ORIGIN=${SITE_ORIGIN:-<unset — canonical URLs will be omitted>}"
         - SITE_ORIGIN="${SITE_ORIGIN}" npm run build
+        - ls -la dist | head
   artifacts:
     baseDirectory: dist
     files:
@@ -19,15 +26,30 @@ frontend:
     paths:
       - node_modules/**/*
   customHeaders:
+    # HTML — short cache so content updates propagate quickly
     - pattern: '**/*.html'
       headers:
         - key: 'Cache-Control'
           value: 'public, max-age=300, must-revalidate'
+        - key: 'X-Frame-Options'
+          value: 'SAMEORIGIN'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
+        - key: 'Referrer-Policy'
+          value: 'strict-origin-when-cross-origin'
+        - key: 'Strict-Transport-Security'
+          value: 'max-age=31536000; includeSubDomains'
+        - key: 'Permissions-Policy'
+          value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+    # Hashed static assets — cache forever, they change filename on rebuild
     - pattern: 'assets/**'
       headers:
         - key: 'Cache-Control'
           value: 'public, max-age=31536000, immutable'
-    - pattern: '**/*.@(svg|png|jpg|jpeg|webp|ico|xml|txt|json)'
+    # Local images, icons, XML, JSON etc.
+    - pattern: '**/*.@(svg|png|jpg|jpeg|webp|ico|xml|txt|json|webmanifest)'
       headers:
         - key: 'Cache-Control'
           value: 'public, max-age=3600'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
